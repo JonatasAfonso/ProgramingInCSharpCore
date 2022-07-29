@@ -8,7 +8,7 @@ IF "%1"=="" GOTO Continue
 	echo 'Criando Pasta de Solucao'
 	mkdir %1
 	cd %1
-	echo 'Agenda da Aula %1' >> agenda.txt
+	echo 'Agenda da Aula %1' >> README.md
 
 	echo 'Versao mais atual do .NET CORE instalada'
 	dotnet --version
@@ -18,11 +18,15 @@ IF "%1"=="" GOTO Continue
 	dotnet new console -n Projeto.ConsoleApp -o Projeto.ConsoleApp
 	dotnet new classlib -n Projeto.LogicaNegocio -o Projeto.LogicaNegocio
 	dotnet new classlib -n Projeto.Modelo -o Projeto.Modelo
+	dotnet new webapi -n Projeto.Api -o Projeto.Api
+	dotnet new webapp -n Projeto.Web -o Projeto.Web
 	dotnet new mstest -n Projeto.Tests -o Projeto.Tests
 
 	echo 'Criacao da Solucao'
 	dotnet new sln -n Solucao
 	dotnet sln add Projeto.ConsoleApp
+	dotnet sln add Projeto.Api
+	dotnet sln add Projeto.Web
 	dotnet sln add Projeto.LogicaNegocio
 	dotnet sln add Projeto.Modelo
 	dotnet sln add Projeto.Tests
